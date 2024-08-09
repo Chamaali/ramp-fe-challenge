@@ -92,7 +92,7 @@ hr.RampBreak--l {
 
 .RampInputSelect--dropdown-container {
   display: none;
-  position: fixed;
+  z-index: 10;
   width: 100%;
   max-width: 700px;
   border: 1px solid var(--color-darker-shade);
@@ -206,3 +206,11 @@ hr.RampBreak--l {
   justify-content: flex-end;
   gap: 0.75rem;
 }
+
+/* .dropdown-list {
+  position: static;
+} */
+
+/* .results {
+  position: relative;
+} */

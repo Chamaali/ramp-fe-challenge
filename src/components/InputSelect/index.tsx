@@ -20,10 +20,6 @@ export function InputSelect<TItem>({
 
   const onChange = useCallback<InputSelectOnChange<TItem>>(
     (selectedItem) => {
-      if (selectedItem === null) {
-        return
-      }
-
       consumerOnChange(selectedItem)
       setSelectedValue(selectedItem)
     },
@@ -65,7 +61,6 @@ export function InputSelect<TItem>({
             >
               {inputValue}
             </div>
-
             <div
               className={classNames("RampInputSelect--dropdown-container", {
                 "RampInputSelect--dropdown-container-opened": isOpen,
@@ -82,11 +77,9 @@ export function InputSelect<TItem>({
           if (!isOpen) {
             return null
           }
-
           if (isLoading) {
             return <div className="RampInputSelect--dropdown-item">{loadingLabel}...</div>
           }
-
           if (items.length === 0) {
             return <div className="RampInputSelect--dropdown-item">No items</div>
           }
@@ -103,7 +96,7 @@ export function InputSelect<TItem>({
                   className: classNames("RampInputSelect--dropdown-item", {
                     "RampInputSelect--dropdown-item-highlighted": highlightedIndex === index,
                     "RampInputSelect--dropdown-item-selected":
-                      parsedSelectedItem?.value === parsedItem.value,
+                      selectedItem !== null && parseItem(selectedItem).value === parsedItem.value,
                   }),
                 })}
               >
@@ -126,6 +119,5 @@ const getDropdownPosition: GetDropdownPositionFn = (target) => {
       left,
     }
   }
-
   return { top: 0, left: 0 }
 }
